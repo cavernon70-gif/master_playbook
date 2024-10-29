@@ -1,0 +1,16 @@
+---
+- name: directory and  file creation play
+  hosts: webservers
+  tasks:
+    - name: directory creation
+      ansible.builtin.file:
+        path: "{{DIRECTORY}}"
+        state: directory
+    - name: file creation
+      ansible.builtin.file:
+        path: "{{DIRECTORY}}/{{FILE}}"
+        state: touch  
+    - name: file content adding
+      ansible.builtin.copy:
+        content: "{{CONTENT}}"
+        dest: "{{DIRECTORY}}/{{FILE}}"    
